@@ -24,55 +24,66 @@ fs.writeFileSync('.vercel/output/config.json', JSON.stringify({
 cp('dist/client', '.vercel/output/static');
 cp('dist/server', '.vercel/output/functions/index.func');
 
+fs.writeFileSync('.vercel/output/functions/index.func/package.json', JSON.stringify({ type: 'module' }));
+
 const adapterCode = `
 import server from './index.js';
 
 export default async function(req, res) {
-  const url = new URL(req.url, 'http://' + (req.headers.host || 'localhost'));
-  
-  const headers = new Headers();
-  for (const key in req.headers) {
-    if (req.headers[key]) {
-      if (Array.isArray(req.headers[key])) {
-        req.headers[key].forEach(v => headers.append(key, v));
-      } else {
-        headers.append(key, req.headers[key]);
+  try {
+    const protocol = req.headers['x-forwarded-proto'] || 'https';
+    const host = req.headers['x-forwarded-host'] || req.headers.host || 'localhost';
+    const url = new URL(req.url, protocol + '://' + host);
+    
+    const headers = new Headers();
+    for (const key in req.headers) {
+      if (req.headers[key]) {
+        if (Array.isArray(req.headers[key])) {
+          req.headers[key].forEach(v => headers.append(key, v));
+        } else {
+          headers.append(key, req.headers[key]);
+        }
       }
     }
-  }
 
-  const init = {
-    method: req.method,
-    headers,
-  };
+    const init = {
+      method: req.method,
+      headers,
+    };
 
-  if (req.method !== 'GET' && req.method !== 'HEAD') {
-    const chunks = [];
-    for await (const chunk of req) {
-      chunks.push(chunk);
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+      const chunks = [];
+      for await (const chunk of req) {
+        chunks.push(chunk);
+      }
+      init.body = Buffer.concat(chunks);
     }
-    init.body = Buffer.concat(chunks);
-  }
 
-  const webReq = new Request(url.href, init);
-  
-  const webRes = await server.fetch(webReq, {}, { waitUntil: () => {} });
+    const webReq = new Request(url.href, init);
+    
+    // Cloudflare fetch signature
+    const webRes = await server.fetch(webReq, process.env, { waitUntil: () => {} });
 
-  res.statusCode = webRes.status;
-  webRes.headers.forEach((value, key) => {
-    res.setHeader(key, value);
-  });
+    res.statusCode = webRes.status;
+    webRes.headers.forEach((value, key) => {
+      res.setHeader(key, value);
+    });
 
-  if (webRes.body) {
-    const reader = webRes.body.getReader();
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      res.write(value);
+    if (webRes.body) {
+      const reader = webRes.body.getReader();
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        res.write(value);
+      }
+      res.end();
+    } else {
+      res.end();
     }
-    res.end();
-  } else {
-    res.end();
+  } catch (err) {
+    console.error('VERCEL ADAPTER ERROR:', err);
+    res.statusCode = 500;
+    res.end('Server Error: ' + (err.stack || String(err)));
   }
 }
 `;
