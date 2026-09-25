@@ -31,3 +31,44 @@ html[data-theme=dark] .social-connections a{color:#cad8ef;border-color:#2a4060}
 .skill-orbit>span{transition:box-shadow .3s,background .3s,color .3s,transform .3s}.skill-orbit:hover>span{transform:scale(1.08);box-shadow:0 0 28px color-mix(in srgb,var(--primary) 65%,transparent)}
 /* -- Responsive tweaks for connect btn -- */
 @media(max-width:700px){.connect-link-btn{font-size:11px}}
+
+/* Enhanced Nav Buttons */
+.theme-button, .motion-button {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 6px 12px !important;
+  border-radius: 20px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  font-size: 11px !important;
+  transition: all 0.2s ease !important;
+}
+
+.theme-button:hover, .motion-button:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+html[data-theme="light"] .theme-button,
+html[data-theme="light"] .motion-button {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme="light"] .theme-button:hover,
+html[data-theme="light"] .motion-button:hover {
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.connect-link-btn {
+  border-bottom: 0 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 5px !important;
+  text-decoration-thickness: 1px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+}
