@@ -1,4 +1,4 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 
 function cp(src, dest) {
@@ -24,8 +24,7 @@ fs.writeFileSync('.vercel/output/config.json', JSON.stringify({
 cp('dist/client', '.vercel/output/static');
 cp('dist/server', '.vercel/output/functions/index.func');
 
-// We must create an adapter to map Vercel Node.js (req, res) to Web Fetch API
-const adapterCode = \
+const adapterCode = `
 import server from './index.js';
 
 export default async function(req, res) {
@@ -57,7 +56,6 @@ export default async function(req, res) {
 
   const webReq = new Request(url.href, init);
   
-  // Call the WinterCG fetch handler
   const webRes = await server.fetch(webReq, {}, { waitUntil: () => {} });
 
   res.statusCode = webRes.status;
@@ -77,12 +75,12 @@ export default async function(req, res) {
     res.end();
   }
 }
-\;
+`;
 
 fs.writeFileSync('.vercel/output/functions/index.func/vercel-adapter.js', adapterCode, 'utf8');
 
 fs.writeFileSync('.vercel/output/functions/index.func/.vc-config.json', JSON.stringify({
-  runtime: 'nodejs20.x',
+  runtime: 'nodejs22.x',
   handler: 'vercel-adapter.js',
   launcherType: 'Nodejs'
 }));
