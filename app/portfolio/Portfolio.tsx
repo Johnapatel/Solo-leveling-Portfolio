@@ -84,7 +84,7 @@ export default function Portfolio({section}:{section:Section}){
 
   // Project cards: cascade reveal with clip-path wipe
   gsap.utils.toArray<HTMLElement>(".project-card").forEach((card,i)=>{
-   gsap.from(card,{x:i%2===0?-80:80,opacity:0,duration:.9,delay:i*.08,ease:"power3.out",scrollTrigger:{trigger:card,start:"top 88%"}});
+   gsap.from(card,{x:i%2===0?-80:80,opacity:0,duration:.9,ease:"power3.out",scrollTrigger:{trigger:card,start:"top 88%"}});
   });
 
   // Ticker: fade+scale in
@@ -119,18 +119,21 @@ export default function Portfolio({section}:{section:Section}){
   gsap.from(".home-about",{clipPath:"inset(0 0 100% 0)",opacity:0,duration:1.1,ease:"power3.out",scrollTrigger:{trigger:".home-about",start:"top 85%"}});
 
   // Services articles: stagger up
-  gsap.utils.toArray<HTMLElement>(".services article").forEach((art,i)=>{
-   gsap.from(art,{y:50,opacity:0,duration:.75,delay:i*.15,ease:"power3.out",scrollTrigger:{trigger:art,start:"top 90%"}});
+  gsap.from(".services article", {
+    y: 50, opacity: 0, duration: .75, stagger: .15, ease: "power3.out",
+    scrollTrigger: { trigger: ".services", start: "top 85%" }
   });
 
   // Toolbox items: stagger slide-in
-  gsap.utils.toArray<HTMLElement>(".toolbox p").forEach((item,i)=>{
-   gsap.from(item,{x:-40,opacity:0,duration:.65,delay:i*.1,ease:"power3.out",scrollTrigger:{trigger:item,start:"top 92%"}});
+  gsap.from(".toolbox p", {
+    x: -40, opacity: 0, duration: .65, stagger: .1, ease: "power3.out",
+    scrollTrigger: { trigger: ".toolbox", start: "top 85%" }
   });
 
   // Edit process steps: bounce in
-  gsap.utils.toArray<HTMLElement>(".process-step").forEach((step,i)=>{
-   gsap.from(step,{y:60,opacity:0,scale:.92,duration:.8,delay:i*.12,ease:"back.out(1.3)",scrollTrigger:{trigger:step,start:"top 88%"}});
+  gsap.from(".process-step", {
+    y: 60, opacity: 0, scale: .92, duration: .8, stagger: .15, ease: "back.out(1.3)",
+    scrollTrigger: { trigger: ".edit-process", start: "top 85%" }
   });
 
   // Skill pills: pop in with spring
@@ -146,8 +149,9 @@ export default function Portfolio({section}:{section:Section}){
   gsap.from(".bubble-two",{scale:0,opacity:0,duration:.7,delay:.8,ease:"back.out(2)"});
 
   // About facts: count-style reveal
-  gsap.utils.toArray<HTMLElement>(".about-facts span").forEach((span,i)=>{
-   gsap.from(span,{y:30,opacity:0,duration:.6,delay:.2+i*.15,ease:"power3.out",scrollTrigger:{trigger:span,start:"top 93%"}});
+  gsap.from(".about-facts span", {
+    y: 30, opacity: 0, duration: .6, stagger: .15, ease: "power3.out",
+    scrollTrigger: { trigger: ".about-facts", start: "top 85%" }
   });
 
  },root);return()=>ctx.revert()},[section,motion]);
