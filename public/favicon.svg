@@ -1,1 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="13" fill="#c64521"/><text x="8" y="45" font-family="Arial,sans-serif" font-size="42" font-weight="700" letter-spacing="-4" fill="#fff4df">ap</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#0e1b31"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1e40af"/>
+    </linearGradient>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="2.5" result="blurred"/>
+      <feComposite in="SourceGraphic" in2="blurred" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background rounded square -->
+  <rect width="64" height="64" rx="12" fill="url(#bg)"/>
+  <!-- Glow halo behind A -->
+  <ellipse cx="32" cy="33" rx="20" ry="18" fill="#2563eb" opacity="0.18" filter="url(#blur)"/>
+  <!-- Italic A in Solo Leveling style -->
+  <text
+    x="32" y="48"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-style="italic"
+    font-weight="900"
+    font-size="44"
+    fill="url(#glow)"
+    letter-spacing="-2"
+  >A</text>
+  <!-- Subtle border -->
+  <rect width="62" height="62" x="1" y="1" rx="11" fill="none" stroke="#2563eb" stroke-width="1" opacity="0.35"/>
+</svg>

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Alok Patel — Logic & Lens",
-  description: "AI, engineering and visual storytelling. Explore Alok Patel’s work in LLM evaluation, machine learning, video editing and videography.",
+  title: "JOHNAP / Home",
+  description: "AI, engineering and visual storytelling. Explore JOHNAP's work in LLM evaluation, machine learning, video editing and videography.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
