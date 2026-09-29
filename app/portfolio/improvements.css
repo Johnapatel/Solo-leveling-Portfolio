@@ -72,3 +72,171 @@ html[data-theme="light"] .motion-button:hover {
   text-transform: uppercase !important;
   letter-spacing: 0.08em !important;
 }
+
+/* ===== JOHNAP Brand Logo ===== */
+.brand-johnap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+.johnap-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1a3a6e 0%, #2563eb 60%, #60a5fa 100%);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  box-shadow: 0 0 18px #2563eb55, 0 0 4px #2563eb88;
+  font-family: Georgia, serif;
+  font-style: italic;
+  flex-shrink: 0;
+}
+.johnap-name {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e6edff;
+}
+html[data-theme="light"] .johnap-name { color: #0b1120; }
+
+/* ===== Film Stats on Storyteller card (home) ===== */
+.world-film-stats {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  gap: 8px;
+  z-index: 4;
+}
+.film-stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+.film-stat svg { flex-shrink: 0; }
+
+/* ===== Social Stats on Editing page services ===== */
+.services-social-stats {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+.svc-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #83b1ff;
+}
+html[data-theme="light"] .svc-stat {
+  background: rgba(37,99,235,0.08);
+  border-color: rgba(37,99,235,0.2);
+  color: #1d4ed8;
+}
+
+/* ===== Travel Section (Home) ===== */
+.home-travel {
+  background: linear-gradient(160deg, #07101e 0%, #0b1120 60%, #0e1b31 100%);
+  border-top: 1px solid rgba(37,99,235,0.12);
+  border-bottom: 1px solid rgba(37,99,235,0.12);
+}
+.travel-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 60px;
+  max-width: 1000px;
+}
+.travel-text .eyebrow { color: #4d7fff; }
+.travel-text h2 {
+  font-size: clamp(38px, 5vw, 65px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  margin: 16px 0 22px;
+}
+.travel-text h2 em { color: #4d7fff; }
+.travel-text > p {
+  max-width: 480px;
+  line-height: 1.65;
+  font-size: 16px;
+  opacity: 0.75;
+  margin-bottom: 28px;
+}
+.travel-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.travel-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+.travel-list li em { color: #4d7fff; font-style: normal; }
+.travel-dot {
+  color: #2563eb;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+/* Travel globe decoration */
+.travel-visual { flex-shrink: 0; }
+.travel-globe {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.globe-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(37,99,235,0.25);
+}
+.ring-a { width: 100%; height: 100%; }
+.ring-b { width: 68%; height: 68%; border-color: rgba(37,99,235,0.4); }
+.motion-on .ring-a { animation: spin 20s linear infinite; }
+.motion-on .ring-b { animation: spin 12s linear infinite reverse; }
+.globe-dot {
+  font-size: 28px;
+  filter: drop-shadow(0 0 12px #2563eb);
+  animation: none;
+}
+.motion-on .globe-dot { animation: bob 4s ease-in-out infinite; }
+
+@media(max-width:700px) {
+  .travel-inner { grid-template-columns: 1fr; gap: 30px; }
+  .travel-visual { display: none; }
+  .johnap-name { display: none; }
+}
