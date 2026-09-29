@@ -240,3 +240,53 @@ html[data-theme="light"] .svc-stat {
   .travel-visual { display: none; }
   .johnap-name { display: none; }
 }
+
+/* ===== Travel Section Light Theme Fix ===== */
+html[data-theme="light"] .home-travel {
+  background: #f0f0eb;
+  border-top-color: rgba(37,99,235,0.15);
+  border-bottom-color: rgba(37,99,235,0.15);
+}
+
+html[data-theme="light"] .travel-text .eyebrow { color: #1d4ed8; }
+
+html[data-theme="light"] .travel-text h2 {
+  color: #0b1120;
+}
+
+html[data-theme="light"] .travel-text h2 em { color: #1d4ed8; }
+
+html[data-theme="light"] .travel-text > p {
+  color: #3a4050;
+  opacity: 1;
+}
+
+html[data-theme="light"] .travel-list li {
+  color: #1a2030;
+  opacity: 1;
+}
+
+html[data-theme="light"] .travel-list li em { color: #1d4ed8; }
+
+html[data-theme="light"] .travel-dot { color: #1d4ed8; }
+
+html[data-theme="light"] .globe-ring { border-color: rgba(37,99,235,0.3); }
+html[data-theme="light"] .ring-b { border-color: rgba(37,99,235,0.5); }
+html[data-theme="light"] .globe-dot { filter: drop-shadow(0 0 10px #1d4ed8); }
+
+/* ===== Airplane horizontal animation ===== */
+.globe-dot {
+  position: relative;
+  display: inline-block;
+}
+
+.motion-on .globe-dot {
+  animation: plane-fly 4s ease-in-out infinite !important;
+}
+
+@keyframes plane-fly {
+  0%   { transform: translateX(-40px); opacity: 0.4; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateX(40px); opacity: 0.4; }
+}
